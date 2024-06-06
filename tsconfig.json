@@ -1,5 +1,27 @@
 {
   "files": [],
+  "include": [
+    "./**/*.ts",
+    "./**/*.vue",
+    "env.d.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "typeRoots": [
+      "./node_modules/@types/",
+      "./src/typings"
+    ],
+    "allowJs": true, // 编译时允许有js
+  },
   "references": [
     {
       "path": "./tsconfig.node.json"

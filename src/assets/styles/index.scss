@@ -1,0 +1,169 @@
+@import './common.scss';
+
+body {
+    height: 100%;
+    margin: 0;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    // font-weight: normal;
+}
+
+html {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+
+    /* IE 10+ */
+    ::-webkit-scrollbar {
+        display: none;
+        /* Chrome Safari */
+    }
+}
+
+#app {
+    width: 100vw;
+    min-width: 1280px;
+    min-height: 100vh;
+    font-size: 14px;
+}
+
+.app-container {
+    padding: 20px 20px 0 20px;
+}
+
+// 弹窗样式
+.card-0 {
+    .n-card-header {
+        padding: 16px 18px;
+    }
+
+    .n-card__content {
+        padding: 0px !important;
+
+        .line-width {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background-color: $theme-border-gray;
+            left: 0px;
+        }
+
+        .card-content {
+            padding: 18px;
+        }
+    }
+
+    // 弹窗底部按钮（其他）
+    .card-footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 18px;
+        column-gap: 16px;
+        box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.1);
+
+        .n-button {
+            min-width: 80px;
+        }
+    }
+}
+
+// 弹窗底部按钮（管理页）
+.dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 18px;
+
+    .n-button {
+        min-width: 80px;
+    }
+}
+
+.n-button.mw80 {
+    min-width: 80px;
+}
+
+.n-base-select-menu .n-base-select-option--pending .n-base-select-option__content {
+    color: #fff;
+}
+
+.n-base-select-menu .n-base-select-option.n-base-select-option--pending::before {
+    background-color: $theme-color;
+}
+
+.n-base-select-menu .n-base-select-option--selected .n-base-select-option__content {
+    color: $theme-color !important;
+}
+
+// 修改 nprogress 颜色
+#nprogress .bar {
+    background: $theme-color !important;
+}
+
+.text-color60 {
+    color: $theme-text-color60
+}
+
+// 管理页通用布局样式
+.manage-container {
+    .search-form {
+        padding: 16px;
+        background-color: #FFF;
+    }
+
+    .flex-layout {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .content {
+        background-color: #FFF;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: calc(100vh - 132px);
+    }
+}
+
+// n-message 弹窗提示，英文字符适配处理
+.n-message-container .n-message {
+    word-break: break-word;
+}
+
+.n-icon svg {
+    width: auto;
+    height: auto;
+}
+
+.icon-hover {
+    cursor: pointer;
+
+    &:hover {
+        color: $theme-color;
+    }
+}
+
+// 重置 n-upload 样式
+.n-upload {
+    width: auto;
+}
+
+// 改变 tabs 头部标签的背景颜色
+.n-tabs .n-tabs-nav {
+    background-color: #FFF;
+}
+
+// 重置 n-card 样式
+.n-card {
+    width: auto;
+}

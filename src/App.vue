@@ -1,85 +1,104 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { zhCN, dateZhCN } from 'naive-ui'
+import { useColorStore } from '@/stores/modules/color'
+
+defineOptions({
+  name: 'App'
+})
+
+const getThemeOverrides = computed(() => {
+  const colorStore = useColorStore()
+  const themeColor = colorStore.themeColor
+  const themeTextColor = colorStore.themeTextColor
+  const disabledColor = colorStore.disabledColor
+  const themeTextColor60 = colorStore.themeTextColor60
+  return {
+    common: {
+      primaryColor: themeColor,
+      primaryColorHover: themeColor,
+      primaryColorPressed: themeColor,
+      infoColor: themeColor,
+      infoColorHover: 'rgba(themeColor, 0.8))',
+      infoColorPressed: themeColor,
+      borderRadius: '4px',
+      successColorHover: themeColor,
+      textColor2: themeTextColor
+    },
+    Menu: {
+      itemColorActive: themeColor,
+      itemColorActiveHover: themeColor,
+      itemColorActiveCollapsed: themeColor,
+      itemTextColorActive: '#FFF',
+      itemTextColorActiveHover: '#FFF',
+      itemIconColorActive: '#FFF',
+      itemIconColorActiveHover: '#FFF',
+      itemHeight: '48px'
+    },
+    Button: {
+      colorDisabledPrimary: disabledColor,
+      borderDisabledPrimary: 'none',
+      colorDisabled: disabledColor,
+      textColorDisabled: '#FFF',
+      iconMarginMedium: '4px',
+      textColorText: themeColor
+    },
+    Input: {
+      borderFocus: themeColor,
+      boxShadowFocus: '0 0 6px 1px ' + themeColor,
+      heightMedium: '34px',
+      borderError: '1px solid #ff0000'
+    },
+    Dropdown: {
+      optionSuffixWidthHuge: '28px',
+      optionPrefixWidthHuge: '28px',
+      optionColorHover: themeColor,
+      optionTextColorHover: '#FFF'
+    },
+    Select: {
+      peers: {
+        InternalSelection: {
+          // border: 'none',
+          heightSmall: '32px',
+          background: 'transparent'
+        },
+        InternalSelectMenu: {
+          optionColorPending: themeColor,
+          optionTextColorPressed: '#fff',
+          optionTextColorHover: '#fff',
+          optionTextColorActive: themeColor,
+          actionTextColor: '#fff',
+        }
+      }
+    },
+    Tooltip: {
+      color: '#FFF',
+      textColor: themeTextColor
+    },
+    Badge: {
+      color: themeColor
+    },
+    Form: {
+      labelTextColor: themeTextColor60,
+    },
+    Tabs: {
+      tabPaddingMediumLine: '12px 16px',
+      tabGapMediumLine: '0px',
+      panePaddingMedium: '10px 10px 0px 10px',
+    },
+    Card: {
+      paddingMedium: '16px 18px'
+    }
+  }
+})
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <NConfigProvider class="h-full" :theme-overrides="getThemeOverrides" :locale="zhCN" :date-locale="dateZhCN"
+    inline-theme-disabled>
+    <AppProvider>
+      <RouterView class="bg-layout" />
+    </AppProvider>
+  </NConfigProvider>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style>
+<style scoped></style>
